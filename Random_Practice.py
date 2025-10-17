@@ -1,6 +1,7 @@
 import random
 from functools import lru_cache
 from collections import deque
+from symtable import Class
 from time import time
 
 from Algo_Random_Prac import mergeSort
@@ -180,3 +181,21 @@ if __name__ == "__main__":
         10: []
     }
     print(Algo_5.bfs(graph_sp,0))
+
+
+class Solution:
+    def myPow(self,x:float,n:int)-> float:
+        while n >=0:
+            output = x**n
+            return output
+
+        y = (1/x)
+        output = y**n
+        return output
+
+if __name__ == "__main__":
+    sol = Solution()
+    print(sol.myPow(2.100,-3))
+
+
+

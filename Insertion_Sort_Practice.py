@@ -130,14 +130,4 @@ if __name__ == "__main__":
 
 ## Perfect Time Complexity
 
-def two_sum(array:list, target: int) -> list:
-    seen  = set()
-    pairs = {}
-
-    for idx,values in enumerate(array):
-        complement = target - values
-        if complement not in seen:
-            seen.add(complement)
-            pairs[complement] = idx
-        else:
 

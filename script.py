@@ -1059,6 +1059,10 @@ import random
 
 import re
 
+from Insertion_Sort_Practice import target_index_finder
+from Random_Practice import Solution
+import random
+
 # Special Palindrome Check
 #
 # class Soju:
@@ -1085,32 +1089,164 @@ import re
 # Depth-First_Search
 
 
+# graph = {
+#     1: [2, 3],
+#     2: [6],
+#     3: [4, 5],
+#     4: [5],
+#     5: [8],
+#     6: [],
+#     7: [8],
+#     8: [7]  # (example directed/undirected depends on edges you add)
+# }
+#
+# def dfs_no_recursion(graph, start):
+#     visited = set()
+#     order = []
+#     stacking = [start]
+#     while stacking:
+#         node = stacking.pop()
+#         if node in visited:
+#             continue
+#         visited.add(node)
+#         order.append(node)
+#         # dict.get(key, default if not found)
+#         for neigh in reversed(graph.get(node, [])):
+#             if neigh not in visited:
+#                 stacking.append(neigh)
+#
+#     return order
+#
+# print(dfs_no_recursion(graph, 1))
+
+
+# This is a wrong solution
+
+# class Solution:
+#     def myPow(self,x:float,n:int)-> float:
+#         while n >=0:
+#             output = x**n
+#             return output
+#
+#         y = (1/x)
+#         output = y**n
+#         return output
+#
+# if __name__ == "__main__":
+#     sol = Solution()
+#     print(sol.myPow(-2.100,-3))
+
+# 3Sum Closest
+
+# class Three_sum_closest:
+#         def threeSumClosest(self, nums: list[int], target: int) -> int:
+#             nums.sort()
+#             closest_ori = 99999
+#             total = 0
+#             the_total = 0
+#             l = len(nums)
+#             for i in range(l - 2):
+#                 left = i + 1
+#                 right = l - 1
+#                 while left < right:
+#                     total = nums[i] + nums[left] + nums[right]
+#                     closest_curr = abs(total - target)
+#                     if closest_curr < closest_ori:
+#                         closest_ori = closest_curr
+#                         the_total = total
+#                     if total < target:
+#                         left += 1
+#                     else:
+#                         right -= 1
+#
+#             return the_total
+#
+# if __name__ == "__main__":
+#         sol = Three_sum_closest()
+#         print(sol.threeSumClosest([1,2,3,4,5,7,6],7))
+
+
+# Threesum Smaller Algorithm
+
+# class ThreeSumCloser:
+#
+#     def threeSumSmaller(self, nums: list[int], target: int) -> int:
+#         nums.sort()
+#         l = len(nums)
+#         spikes = 0
+#         for i in range(l-2):
+#             left = i+1
+#             right = l - 1
+#             while left < right:
+#                 total = nums[i] + nums[left] + nums[right]
+#                 if total < target:
+#                     spikes += (right-left)
+#                     left += 1
+#                 else:
+#                     right-= 1
+#
+#
+#         return spikes
+#
+# if __name__ == "__main__":
+#     sol = ThreeSumCloser()
+#     array_n = [random.randint(-2,4) for x in range(5)]
+#     print(f"The array looks like {array_n}")
+#     tar = 5
+#     print(sol.threeSumSmaller(array_n,tar))
+
+
+# class solution:
+#     def numSubArrayProductLessThanK(self,num: list[int], k: int) ->int:
+#         if k<= 1:
+#             return 0
+#
+#         prod = 1.0
+#         ans = 0
+#         left = 0
+#
+#         for right in range(len(num)):
+#             prod *= num[right]
+#
+#             while prod >= k and left <= right:
+#                 prod /= num[left]
+#                 left += 1
+#
+#             ans += (right - left + 1)
+#
+#         return ans
+
+# I did not understand the above question, let's not include that for understanding
+
+# shortest_path using bfs,
+
+from collections import deque
+
+def bfs_shortest_path(graph,start,end):
+    traversed = set()
+    queue = deque([start])
+    while queue:
+        path = queue.popleft()
+        node = path[-1]
+
+        if node == end:
+            return path
+
+        if node not in traversed:
+            traversed.add(node)
+            for adjacent_nodes in graph.get(node,[]):
+                new_path = list(path)
+                new_path.append(adjacent_nodes)
+                queue.append(new_path)
+
+    return None
+
 graph = {
-    1: [2, 3],
-    2: [6],
-    3: [4, 5],
-    4: [5],
-    5: [8],
-    6: [],
-    7: [8],
-    8: [7]  # (example directed/undirected depends on edges you add)
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'E': ['F'],
+    'F': ['G']
 }
 
-def dfs_no_recursion(graph, start):
-    visited = set()
-    order = []
-    stacking = [start]
-    while stacking:
-        node = stacking.pop()
-        if node in visited:
-            continue
-        visited.add(node)
-        order.append(node)
-        # dict.get(key, default if not found)
-        for neigh in reversed(graph.get(node, [])):
-            if neigh not in visited:
-                stacking.append(neigh)
-
-    return order
-
-print(dfs_no_recursion(graph, 1))
+print(bfs_shortest_path(graph, 'A', 'G'))
