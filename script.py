@@ -1222,31 +1222,93 @@ import random
 
 from collections import deque
 
-def bfs_shortest_path(graph,start,end):
-    traversed = set()
-    queue = deque([start])
-    while queue:
-        path = queue.popleft()
-        node = path[-1]
+# def bfs_shortest_path(graph,start,end):
+#     traversed = set()
+#     queue = deque([start])
+#     while queue:
+#         path = queue.popleft()
+#         node = path[-1]
+#
+#         if node == end:
+#             return path
+#
+#         if node not in traversed:
+#             traversed.add(node)
+#             for adjacent_nodes in graph.get(node,[]):
+#                 new_path = list(path)
+#                 new_path.append(adjacent_nodes)
+#                 queue.append(new_path)
+#
+#     return None
+#
+# graph = {
+#     'A': ['B', 'C'],
+#     'B': ['D', 'E'],
+#     'C': ['F'],
+#     'E': ['F'],
+#     'F': ['G']
+# }
+#
+# print(bfs_shortest_path(graph, 'A', 'G'))
 
-        if node == end:
-            return path
+# Longest Common Sequence
 
-        if node not in traversed:
-            traversed.add(node)
-            for adjacent_nodes in graph.get(node,[]):
-                new_path = list(path)
-                new_path.append(adjacent_nodes)
-                queue.append(new_path)
 
-    return None
+# failed attempt
 
-graph = {
-    'A': ['B', 'C'],
-    'B': ['D', 'E'],
-    'C': ['F'],
-    'E': ['F'],
-    'F': ['G']
-}
+# def lcs(word_1:str, word_2:str)-> str:
+#     small_word = min(word_1,word_2)
+#     big_word = max(word_1,word_2)
+#     longest = 0
+#     sub_word = ""
+#     for index, value in enumerate(small_word):
+#         j = 0
+#         while small_word[j] == big_word[j]:
+#             j+= 1
+#         j+= 1
+#         if j - index > longest:
+#             longest = (j-index)
+#             sub_word = small_word[index:j+1]
+#
+#     return sub_word
+#
+# if __name__ == "__main__":
+#     word_one = 'racecar'
+#     word_two = 'suscar'
+#     print(lcs(word_one,word_two))
 
-print(bfs_shortest_path(graph, 'A', 'G'))
+
+# Longest Commmon Sequence
+
+
+def lcs(s1: str, s2: str) -> str:
+    l1, l2 = len(s1), len(s2)
+    dp = [[0] * (l1 + 1) for _ in range(l2 + 1)]
+
+    # Fill DP table
+    for i in range(1, l2 + 1):
+        for j in range(1, l1 + 1):
+            if s2[i - 1] == s1[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    # Reconstruct LCS
+    i, j = l2, l1
+    out = []
+    while i > 0 and j > 0:
+        if s2[i - 1] == s1[j - 1]:
+            out.append(s2[i - 1])
+            i -= 1
+            j -= 1
+        elif dp[i - 1][j] >= dp[i][j - 1]:
+            i -= 1
+        else:
+            j -= 1
+
+    return "".join(reversed(out))
+
+
+# Test
+print(lcs("abcdef", "acbcf"))      # -> "abcf"
+print(lcs("AGGTAB", "GXTXAYB"))    # -> "GTAB"
