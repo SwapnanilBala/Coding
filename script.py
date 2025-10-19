@@ -1280,35 +1280,54 @@ from collections import deque
 
 # Longest Commmon Sequence
 
+# Didn't Understand a thing with this one
 
-def lcs(s1: str, s2: str) -> str:
-    l1, l2 = len(s1), len(s2)
-    dp = [[0] * (l1 + 1) for _ in range(l2 + 1)]
+# def lcs(s1: str, s2: str) -> str:
+#     l1, l2 = len(s1), len(s2)
+#     dp = [[0] * (l1 + 1) for _ in range(l2 + 1)]
+#
+#     # Fill DP table
+#     for i in range(1, l2 + 1):
+#         for j in range(1, l1 + 1):
+#             if s2[i - 1] == s1[j - 1]:
+#                 dp[i][j] = dp[i - 1][j - 1] + 1
+#             else:
+#                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+#
+#     # Reconstruct LCS
+#     i, j = l2, l1
+#     out = []
+#     while i > 0 and j > 0:
+#         if s2[i - 1] == s1[j - 1]:
+#             out.append(s2[i - 1])
+#             i -= 1
+#             j -= 1
+#         elif dp[i - 1][j] >= dp[i][j - 1]:
+#             i -= 1
+#         else:
+#             j -= 1
+#
+#     return "".join(reversed(out))
+#
+#
+# # Test
+# print(lcs("abcdef", "acbcf"))      # -> "abcf"
+# print(lcs("AGGTAB", "GXTXAYB"))    # -> "GTAB"
 
-    # Fill DP table
-    for i in range(1, l2 + 1):
-        for j in range(1, l1 + 1):
-            if s2[i - 1] == s1[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            else:
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+# Selection Sort:
+def ss(array:list[int]):
+    for i in range(len(array)-1):
+        for j in range(i+1, len(array)):
+            if array[i] > array[j]:
+                swap(array,i,j)
 
-    # Reconstruct LCS
-    i, j = l2, l1
-    out = []
-    while i > 0 and j > 0:
-        if s2[i - 1] == s1[j - 1]:
-            out.append(s2[i - 1])
-            i -= 1
-            j -= 1
-        elif dp[i - 1][j] >= dp[i][j - 1]:
-            i -= 1
-        else:
-            j -= 1
-
-    return "".join(reversed(out))
+    return array
 
 
-# Test
-print(lcs("abcdef", "acbcf"))      # -> "abcf"
-print(lcs("AGGTAB", "GXTXAYB"))    # -> "GTAB"
+def swap(array,a,b):
+    array[b],array[a] = array[a], array[b]
+
+
+if __name__ == "__main__":
+    arr = [7,6,5,2,4,3,1,7,4,5,2,8,5,3,6,2,0]
+    print(ss(arr))
