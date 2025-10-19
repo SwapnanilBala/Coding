@@ -1315,19 +1315,27 @@ from collections import deque
 # print(lcs("AGGTAB", "GXTXAYB"))    # -> "GTAB"
 
 # Selection Sort:
-def ss(array:list[int]):
-    for i in range(len(array)-1):
-        for j in range(i+1, len(array)):
-            if array[i] > array[j]:
-                swap(array,i,j)
+# def ss(array:list[int]):
+#     for i in range(len(array)-1):
+#         for j in range(i+1, len(array)):
+#             if array[i] > array[j]:
+#                 swap(array,i,j)
+#
+#     return array
+#
+#
+# def swap(array,a,b):
+#     array[b],array[a] = array[a], array[b]
+#
+#
+# if __name__ == "__main__":
+#     arr = [7,6,5,2,4,3,1,7,4,5,2,8,5,3,6,2,0]
+#     print(ss(arr))
 
-    return array
-
-
-def swap(array,a,b):
-    array[b],array[a] = array[a], array[b]
-
-
-if __name__ == "__main__":
-    arr = [7,6,5,2,4,3,1,7,4,5,2,8,5,3,6,2,0]
-    print(ss(arr))
+# import numpy as np
+#
+# list_1 = [1,2,3,4,5]
+# 
+# list_2 = np.array([1,2,3,4,5])
+#
+# print(f"normal multiplication : {list_1*5}, and vector multiplicaton {list_2*5}" )
