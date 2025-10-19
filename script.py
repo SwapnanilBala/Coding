@@ -1339,3 +1339,58 @@ from collections import deque
 # list_2 = np.array([1,2,3,4,5])
 #
 # print(f"normal multiplication : {list_1*5}, and vector multiplicaton {list_2*5}" )
+
+# In this tab we will try to replicate the mergeSort Algorithm, lets hit it
+# Also going to import numpy to make sure to stress the shit out of this algorithm
+# And my laptop as well, the reason is to generate a huge array and also import time
+
+
+import numpy as np
+import time
+import random
+
+class MergeSort:
+
+      def mergeSort(self,array):
+            if len(array) <= 1:
+                  return array
+            mid = len(array)//2
+            left_side = array[:mid]
+            right_side = array[mid:]
+
+            left_sorted = self.mergeSort(left_side)
+            right_sorted = self.mergeSort(right_side)
+
+            return self.merge(left_sorted,right_sorted)
+
+      def merge(self,left,right):
+            a = b = 0
+            result = []
+            left_len = len(left)
+            right_len = len(right)
+            while a < left_len and b < right_len:
+                  if left[a] < right[b]:
+                        result.append(left[a])
+                        a+= 1
+                  else:
+                        result.append(right[b])
+                        b+= 1
+
+            while a < left_len:
+                  result.append(left[a])
+                  a+= 1
+            while b < right_len:
+                  result.append(right[b])
+                  b+= 1
+
+            return result
+
+if __name__ == "__main__":
+      a_huge_array = [random.randint(1,11111) for x in  range(2021)]
+      sol = MergeSort()
+      t1 = time.time()
+      res = sol.mergeSort(a_huge_array)
+      t2 = time.time()
+      print(f"The Sorted array is : {res} \nand the time it took was {t2-t1}")
+
+
