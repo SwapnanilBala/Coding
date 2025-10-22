@@ -1349,48 +1349,108 @@ import numpy as np
 import time
 import random
 
-class MergeSort:
+# class MergeSort:
+#
+#       def mergeSort(self,array):
+#             if len(array) <= 1:
+#                   return array
+#             mid = len(array)//2
+#             left_side = array[:mid]
+#             right_side = array[mid:]
+#
+#             left_sorted = self.mergeSort(left_side)
+#             right_sorted = self.mergeSort(right_side)
+#
+#             return self.merge(left_sorted,right_sorted)
+#
+#       def merge(self,left,right):
+#             a = b = 0
+#             result = []
+#             left_len = len(left)
+#             right_len = len(right)
+#             while a < left_len and b < right_len:
+#                   if left[a] < right[b]:
+#                         result.append(left[a])
+#                         a+= 1
+#                   else:
+#                         result.append(right[b])
+#                         b+= 1
+#
+#             while a < left_len:
+#                   result.append(left[a])
+#                   a+= 1
+#             while b < right_len:
+#                   result.append(right[b])
+#                   b+= 1
+#
+#             return result
+#
+# if __name__ == "__main__":
+#       a_huge_array = [random.randint(1,11111) for x in  range(2021)]
+#       sol = MergeSort()
+#       t1 = time.time()
+#       res = sol.mergeSort(a_huge_array)
+#       t2 = time.time()
+#       print(f"The Sorted array is : {res} \nand the time it took was {t2-t1}")
 
-      def mergeSort(self,array):
-            if len(array) <= 1:
-                  return array
-            mid = len(array)//2
-            left_side = array[:mid]
-            right_side = array[mid:]
 
-            left_sorted = self.mergeSort(left_side)
-            right_sorted = self.mergeSort(right_side)
+# def binary_search(arr : list,target: int):
+#     l = 0
+#     r = len(arr) - 1
+#
+#     while l <= r:
+#         mid = (l+r) // 2
+#
+#         if arr[mid] == target:
+#             return  mid
+#         if arr[mid] < target:
+#             l =  mid+1
+#         else:
+#             r = mid - 1
+#
+#     return -1
+#
+#
+# if __name__ == "__main__":
+#     an_array = [8,7,6,5,4,3,2,1]
+#     target_number = 6
+#     sorted_array = an_array[::-1]
+#     index_res = binary_search(sorted_array,target_number)
+#     print(f'The sorted array will look like this - {sorted_array}')
+#     print(f"The position of our target number will be: {index_res} ")
 
-            return self.merge(left_sorted,right_sorted)
+# Fibonacci Series with Tabulation
 
-      def merge(self,left,right):
-            a = b = 0
-            result = []
-            left_len = len(left)
-            right_len = len(right)
-            while a < left_len and b < right_len:
-                  if left[a] < right[b]:
-                        result.append(left[a])
-                        a+= 1
-                  else:
-                        result.append(right[b])
-                        b+= 1
+# def fibo(number:int) -> int:
+#     if number <= 1:
+#         return number
+#     dp_array = [0] * (number+1)
+#     dp_array[1] = 1
+#     for i in range(2,number+1):
+#         dp_array[i] = dp_array[i-1] + dp_array[i-2]
+#
+#     return dp_array[number-1]
+#
+# if __name__ == "__main__":
+#     print(f"The {7}th item in the fibonacci series is {fibo(7)}")
 
-            while a < left_len:
-                  result.append(left[a])
-                  a+= 1
-            while b < right_len:
-                  result.append(right[b])
-                  b+= 1
 
-            return result
+# Now time to reduce the space complexity
 
-if __name__ == "__main__":
-      a_huge_array = [random.randint(1,11111) for x in  range(2021)]
-      sol = MergeSort()
-      t1 = time.time()
-      res = sol.mergeSort(a_huge_array)
-      t2 = time.time()
-      print(f"The Sorted array is : {res} \nand the time it took was {t2-t1}")
-
+# def fibo(num: int) -> int:
+#     if num <= 1:
+#         return num
+#
+#     prev, curr = 0, 1
+#
+#     for i in range(2, num + 1):
+#         next_val = prev + curr
+#         prev = curr
+#         curr = next_val
+#
+#     return prev
+#
+#
+# if __name__ == "__main__":
+#     print(f"So our fibonacci number will be: {fibo(7)}")
 
