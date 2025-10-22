@@ -1454,3 +1454,60 @@ import random
 # if __name__ == "__main__":
 #     print(f"So our fibonacci number will be: {fibo(7)}")
 
+# DP climbing stairs
+
+# def climb_stairs(steps: int)-> int:
+#     dp_st = [0] * (steps+1)
+#     dp_st[1] = 1
+#     dp_st[2] = 2
+#     if 0 < steps <= 2:
+#         return dp_st[steps]
+#     else:
+#         for i in range(3,steps+1):
+#             dp_st[i] = dp_st[i-1] + dp_st[i-2]
+#
+#         return dp_st[steps]
+#
+# if __name__ == "__main__":
+#     print(f'The number of ways we could climb the stairs are: {climb_stairs(4)}')
+
+# Min Cost Climbing Stairs
+
+# def stairs_cost(cost: list[int]) -> int:
+#     l = len(cost)
+#     dp_cost = [0] * (l+1)
+#     dp_cost[0] = 0
+#     dp_cost[1] = 0
+#     for i in range(2, l+1):
+#         dp_cost[i] = min(dp_cost[i-1] + cost[i-1], dp_cost[i-2] + cost[i-2])
+#
+#     return dp_cost[l]
+#
+# if __name__ == "__main__" :
+#     print(stairs_cost([10, 15, 20]))
+#     print(stairs_cost([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]))
+
+# Robbing Houses,
+
+def rob(houses:  list[int])-> int:
+    n = len(houses)
+    if n ==0:
+        return 0
+    if n == 1:
+        return houses[0]
+
+    dp = [0] * n
+
+    dp[0] = houses[0]
+    dp[1] = max(houses[0], houses[1])
+
+    for i in range(2,n):
+        dp[i] = max(dp[i-1], dp[i-2] + houses[i])
+
+    return dp[-1]
+
+
+if __name__ == "__main__":
+    print(rob([1, 2, 3, 4, 5]))
+
+
