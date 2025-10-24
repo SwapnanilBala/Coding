@@ -1512,20 +1512,20 @@ import random
 
 # Maximum Sub_Array
 
-def max_subarray(nums: list[int])-> list[int]:
-    n = len(nums)
-    dp_list = [0] * n
-    dp_list[0] = nums[0]
-    dp_sum = nums[0]
-    for i in range(1,n):
-        dp_list[i] = max(nums[i], dp_list[i-1] + nums[i])
-        dp_sum = max(dp_sum,dp_list[i])
-
-    return dp_sum
-
-if __name__ == "__main__":
-    numbers_random = [2,3,4,5,1,6,2,3,7,3,7,5,8,9,0,-5,-3,-5,-7,0]
-    print(max_subarray(numbers_random))
+# def max_subarray(nums: list[int])-> list[int]:
+#     n = len(nums)
+#     dp_list = [0] * n
+#     dp_list[0] = nums[0]
+#     dp_sum = nums[0]
+#     for i in range(1,n):
+#         dp_list[i] = max(nums[i], dp_list[i-1] + nums[i])
+#         dp_sum = max(dp_sum,dp_list[i])
+#
+#     return dp_sum
+#
+# if __name__ == "__main__":
+#     numbers_random = [2,3,4,5,1,6,2,3,7,3,7,5,8,9,0,-5,-3,-5,-7,0]
+#     print(max_subarray(numbers_random))
 
 
 
