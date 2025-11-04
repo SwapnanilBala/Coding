@@ -1059,6 +1059,8 @@ import random
 
 import re
 
+from jsonschema.benchmarks.const_vs_enum import value
+
 from Insertion_Sort_Practice import target_index_finder
 from Random_Practice import Solution
 import random
@@ -1528,6 +1530,18 @@ import random
 #     print(max_subarray(numbers_random))
 
 
+# dp = [[0]*4]*3
+# print(dp)
+#
+# target = 'abc'
+#
+# for index_1, value_1 in enumerate('abdc'):
+#     for index_2,value_2 in enumerate('dcba'):
+
+def exist(board: list[list[str]], target):
+    connecter = dict()
+    l = len(board[0])
+    for i in range(len(board)-1):
 
 
 
